@@ -1,0 +1,80 @@
+server:
+  port: 9090
+  tomcat:
+    uri-encoding: utf-8
+logging:
+  level:
+    tk.mybatis: debug
+    com.mle.server.mapper: debug
+    org.springframework.cloud.netflix.feign: debug
+spring:
+  application:
+    name: xjd_api
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+  datasource:
+    name: xjd
+    url: jdbc:mysql://114.55.102.254:3306/xjd?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: rootHCjr2016
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    tomcat:
+      max-active: 20
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+  redis:
+    database: 0 # Redis数据库索引（默认为0）
+    host: 47.97.173.85  #Redis服务器地址
+    port: 6379 # Redis服务器连接端口
+    password: # Redis服务器连接密码（默认为空）
+    lettuce:
+      pool:
+        max-active: 20 # 连接池最大连接数（使用负值表示没有限制）
+        max-idle: 10 # 连接池中的最大空闲连接
+        min-idle: 5 # 连接池中的最小空闲连接
+Constants:
+  SWAGGER: true
+  MESSAGE: message
+  STATUS: status
+  ACCESS_TOKEN: accessToken
+  ADMIN_INFO: adminInfo
+  USER_INFO: userInfo
+  USER_ACCESS_TOKEN: userAccessToken
+  FDFS_URL: http://114.55.34.84:8899/
+  DATA: data
+  ITEM: item
+  ADMIN_EXSPIRETIME: 1200
+  USER_EXSPIRETIME: 1200
+  COUNT: count
